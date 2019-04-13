@@ -155,12 +155,12 @@ ul.todo#completed:before {
   margin: 0 0 0 -75px;
 }
 
-ul.todo#todo:after {
+ul.todo#todo:empty:after {
   content: 'You have nothing to-do!';
   margin-top: 15px;
 }
 
-ul.todo#completed:after {
+ul.todo#completed:empty:after {
   content: 'You are yet to complete any tasks';
 }
 

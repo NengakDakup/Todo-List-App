@@ -1,3 +1,9 @@
+var data = {
+  todo: [],
+  completed: []
+};
+
+
 
 //to get the user click on the button
 document.getElementById('addItem').addEventListener("click", function(){
@@ -5,16 +11,22 @@ document.getElementById('addItem').addEventListener("click", function(){
   if (value) {
     addItemTodo(value);
     document.getElementById('item').value = '';
+
+    data.todo.push(value);
+    console.log(data);
   }
 
 });
 
+//to remove an item
 function removeItem() {
   var item = this.parentNode.parentNode;
   var parent = item.parentNode;
   parent.removeChild(item);
 }
 
+
+//to move an item either to the completed list or to the todo list
 function completeItem() {
   var item = this.parentNode.parentNode;
   var parent = item.parentNode;
