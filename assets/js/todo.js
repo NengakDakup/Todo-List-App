@@ -1,10 +1,27 @@
-var data = {
+var data =(localStorage.getItem('todolist'))? JSON.parse(localStorage.getItem('todolist')) : {
   todo: [],
   completed: []
 };
 
-console.log( localStorage.getItem('todolist') );
+var removeSVG = '<i class="fa fa-trash-alt"></i>';
+var completeSVG = '<i class="fa fa-check"></i>';
 
+renderTodoList();
+
+
+function renderTodoList() {
+  if (!data.todo.length && !data.completed.length) return;
+
+  for (var i = 0; i < data.todo.length; i++) {
+    var value = data.todo[i];
+    addItemTodo(value);
+  }
+
+  for (var j = 0; j < data.completed.length; j++) {
+    var value = data.todo[j];
+    addItemTodo(value, true);
+  }
+}
 
 
 //to get the user click on the button
@@ -18,6 +35,16 @@ document.getElementById('addItem').addEventListener("click", function(){
   }
   dataObjectUpdated();
 });
+
+document.getElementById('item').addEventListener('keydown', function(e){
+  var value = this.value;
+  if (e.code === 'Enter' && value) {
+    addItemTodo(value);
+    this.value = "";
+    data.todo.push(value);
+  }
+  dataObjectUpdated();
+})
 
 function dataObjectUpdated() {
   localStorage.setItem('todolist', JSON.stringify(data));
@@ -66,10 +93,8 @@ function completeItem() {
 
 }
 
-function addItemTodo(text) {
-  var removeSVG = '<i class="fa fa-trash-alt"></i>';
-  var completeSVG = '<i class="fa fa-check"></i>';
-  var list = document.getElementById('todo');
+function addItemTodo(text, completed) {
+  var list = (completed)? document.getElementById('completed') : document.getElementById('todo');
 
   var item = document.createElement('li');
   item.innerText = text;
