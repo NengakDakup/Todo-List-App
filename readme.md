@@ -1,6 +1,9 @@
 # Todo List app
 ## A simple html Todo List app powered by changing DOM elements with Javascript
 
+see it here:
+[https://nengakdakup.github.io/Todo-List-App/](https://nengakdakup.github.io/Todo-List-App/)
+
 ##Features
  - Add an item to be done
  - Complete an item
